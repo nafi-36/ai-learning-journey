@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#7864d8" />
+  <title>AI Learning Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home" aria-label="AI Learning Journey home">
+        <span class="brand-mark">✳</span>
+        <span><strong>AI Learning</strong><small>JOURNEY</small></span>
+      </a>
+      <div class="side-label">LEARNING SPACE</div>
+      <nav class="nav">
+        <button class="nav-link active" data-view="home"><span>⌂</span> Overview</button>
+        <button class="nav-link" data-view="path"><span>◈</span> Learning path</button>
+        <button class="nav-link" data-view="resources"><span>↗</span> Resource library</button>
+        <button class="nav-link" data-view="devices"><span>▣</span> Device guide</button>
+        <button class="nav-link" data-view="achievements"><span>✧</span> Achievements</button>
+        <button class="nav-link" data-view="notes"><span>▤</span> My notes</button>
+      </nav>
+      <!-- <div class="side-label optional-label">EXTRA EXPLORATION</div>
+      <nav class="nav">
+        <button class="nav-link" data-view="career"><span>➜</span> Career preparation <em>Optional</em></button>
+      </nav> -->
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip"><span class="tip-icon">☁</span><strong>Small steps matter.</strong><p>Consistency beats rushing. Learn at your own pace.</p></div>
+        <div class="sidebar-foot">Made for curious minds <span>♥</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">Learning space <span>/</span> <b id="crumb">Overview</b></div>
+        <div class="top-actions">
+          <span class="save-status" id="saveStatus">● Progress saved locally</span>
+          <button class="avatar" title="Your learning space">M</button>
+        </div>
+      </header>
+
+      <section class="view active" id="view-home">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="sparkle">✦</span> YOUR PERSONAL AI LEARNING SPACE</div>
+            <h1>Every expert was once<br><span>a curious beginner.</span></h1>
+            <p class="subhead">Explore AI, understand how it works, and turn what you learn into something real.</p>
+            <button class="primary-btn" data-go="path">Continue learning <span>→</span></button>
+          </div>
+          <div class="welcome-art">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="art-core">AI<span>✦</span></div>
+            <span class="float-chip chip-one">learn</span><span class="float-chip chip-two">build</span><span class="float-chip chip-three">explore</span>
+            <span class="art-star star-one">✦</span><span class="art-star star-two">✧</span>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon purple">◈</div><div><span>Overall progress</span><strong id="overallStat">0%</strong><small id="completedText">0 of 6 modules completed</small></div><div class="mini-ring" id="miniRing"><span>0%</span></div></article>
+          <article class="stat-card"><div class="stat-icon pink">✓</div><div><span>Lessons completed</span><strong id="lessonsStat">0</strong><small>Keep the momentum going</small></div></article>
+          <article class="stat-card"><div class="stat-icon peach">⚡</div><div><span>Learning streak</span><strong id="streakStat">0 days</strong><small>Days with learning activity</small></div></article>
+        </div>
+
+        <div class="section-heading"><div><div class="eyebrow">YOUR NEXT STEP</div><h2>Pick up where you left off</h2></div><button class="text-btn" data-go="path">View full path →</button></div>
+        <div class="continue-card" id="continueCard"></div>
+
+        <div class="section-heading"><div><div class="eyebrow">THE BIG PICTURE</div><h2>Your learning journey</h2><p class="section-desc">Six stages, one step at a time. No deadlines — learn at your own pace.</p></div></div>
+        <div class="journey-strip" id="journeyStrip"></div>
+        <div class="motivation"><div class="motivation-icon">✧</div><div><strong>A gentle reminder</strong><p>You don't need to understand everything at once. Focus on understanding one concept, then try it with your own hands.</p></div></div>
+      </section>
+
+      <section class="view" id="view-path">
+        <div class="page-intro"><div class="eyebrow">THE ROADMAP</div><h1>Your AI learning path</h1><p>From the foundations of AI to building and evaluating your own AI-powered projects.</p></div>
+        <div class="path-summary"><div><strong>6 learning modules</strong><span>Suggested duration: 6 months · Flexible pace</span></div><div class="summary-progress"><b id="pathPercent">0%</b><div class="progress-track"><i id="pathBar"></i></div></div></div>
+        <div class="module-list" id="moduleList"></div>
+      </section>
+
+      <section class="view" id="view-module">
+        <button class="back-link" data-go="path">← Back to learning path</button>
+        <div id="moduleDetail"></div>
+      </section>
+
+      <section class="view" id="view-resources">
+        <div class="page-intro"><div class="eyebrow">YOUR KNOWLEDGE TOOLBOX</div><h1>Resource library</h1><p>A curated collection of courses, documentation, videos, and tools to support every stage of your journey.</p></div>
+        <div class="resource-toolbar"><div class="search-box"><span>⌕</span><input id="resourceSearch" placeholder="Search resources, topics, or platforms..." /></div><select id="resourceFilter"><option value="all">All categories</option><option value="Course">Courses</option><option value="Documentation">Documentation</option><option value="Video">Videos</option><option value="Tool">Tools</option><option value="Practice">Practice</option></select></div>
+        <div class="resource-grid" id="resourceGrid"></div>
+        <div class="admin-panel">
+          <div class="admin-heading"><div><div class="eyebrow">CURATE THE JOURNEY</div><h2>Resource editor</h2><p>Add or update learning links for your friend. Changes are saved in this browser.</p></div><span class="admin-lock">✎ Editor</span></div>
+          <form id="resourceForm" class="resource-form">
+            <label>Resource title<input id="resTitle" required placeholder="e.g. Machine Learning Crash Course"></label>
+            <label>URL<input id="resUrl" type="url" required placeholder="https://..."></label>
+            <label>Category<select id="resCategory"><option>Course</option><option>Documentation</option><option>Video</option><option>Tool</option><option>Practice</option></select></label>
+            <label>Related module<select id="resModule"><option value="all">General</option></select></label>
+            <label class="full-field">Short description<input id="resDescription" placeholder="What will your friend learn from this?"></label>
+            <button class="primary-btn" type="submit">＋ Add resource</button>
+          </form>
+          <div class="admin-note">Tip: You can add YouTube playlists, official documentation, free courses, articles, and interactive coding platforms here.</div>
+        </div>
+      </section>
+
+      <section class="view" id="view-devices">
+        <div class="page-intro"><div class="eyebrow">BEFORE YOU BEGIN</div><h1>Device & setup guide</h1><p>You can start learning AI without an expensive computer. Choose the setup that matches what you want to practice.</p></div>
+        <div class="device-callout"><span>💡</span><div><strong>You do not need a high-end GPU on day one.</strong><p>Most beginner exercises, Python notebooks, and classical machine learning can run on an ordinary modern laptop. For heavier deep learning, use cloud notebooks such as Google Colab or Kaggle.</p></div></div>
+        <div class="device-grid">
+          <article class="device-card"><div class="device-top"><span class="device-icon">💻</span><span class="device-tag starter">Starter setup</span></div><h3>Fundamentals & basic ML</h3><p class="device-sub">Months 1–2 · Python, notebooks, datasets, Scikit-learn</p><ul><li><b>CPU:</b> Modern Intel Core i3 / Ryzen 3 or Apple Silicon</li><li><b>RAM:</b> 8 GB minimum, 16 GB recommended</li><li><b>Storage:</b> 10–20 GB free SSD space</li><li><b>GPU:</b> Not required</li><li><b>Internet:</b> Stable connection</li></ul><div class="device-verdict">A regular student laptop is usually enough.</div></article>
+          <article class="device-card featured-device"><div class="device-top"><span class="device-icon">🧠</span><span class="device-tag recommended">Recommended</span></div><h3>Deep learning & AI apps</h3><p class="device-sub">Months 3–4 · Neural networks, NLP, LLM APIs, small experiments</p><ul><li><b>CPU:</b> Intel Core i5 / Ryzen 5 / Apple M-series</li><li><b>RAM:</b> 16 GB recommended</li><li><b>Storage:</b> 30–50 GB free SSD space</li><li><b>GPU:</b> Optional; cloud GPU is useful</li><li><b>Internet:</b> Stable, preferably unlimited</li></ul><div class="device-verdict">Best balance for learning and building projects.</div></article>
+          <article class="device-card"><div class="device-top"><span class="device-icon">⚙️</span><span class="device-tag advanced">Advanced setup</span></div><h3>Local model experimentation</h3><p class="device-sub">Months 5–6 · Larger models, local inference, heavier training</p><ul><li><b>CPU:</b> Modern 6-core or better</li><li><b>RAM:</b> 32 GB+ recommended</li><li><b>Storage:</b> 100 GB+ free SSD space</li><li><b>GPU:</b> NVIDIA GPU with 8–12 GB+ VRAM as a practical starting point</li><li><b>Internet:</b> Stable for model downloads</li></ul><div class="device-verdict">Useful for local experimentation, not mandatory for course completion.</div></article>
+        </div>
+        <div class="section-heading"><div><div class="eyebrow">SOFTWARE CHECKLIST</div><h2>Prepare your learning environment</h2><p class="section-desc">Tick each item when it is ready on your device.</p></div></div>
+        <div class="setup-card" id="setupChecklist"></div>
+        <div class="note-card"><strong>Important note about training AI models</strong><p>Training a large language model from scratch requires substantial compute and is outside the needs of this roadmap. The projects here should focus on using pretrained models, fine-tuning small models when appropriate, API integration, and cloud-based experiments. Always check the current hardware limits and pricing of cloud platforms before running GPU workloads.</p></div>
+      </section>
+
+      <section class="view" id="view-achievements">
+        <div class="page-intro"><div class="eyebrow">EVERY STEP COUNTS</div><h1>Your achievements</h1><p>Celebrate progress, not perfection. Every completed module is proof that you kept going.</p></div>
+        <div class="achievement-hero"><div class="trophy">🏆</div><div><div class="eyebrow">YOUR COLLECTION</div><h2 id="achievementCount">0 of 9 achievements unlocked</h2><p>Keep exploring to unlock them all.</p></div></div>
+        <div class="achievement-grid" id="achievementGrid"></div>
+      </section>
+
+      <section class="view" id="view-notes">
+        <div class="page-intro"><div class="eyebrow">THINK IT THROUGH</div><h1>My learning notes</h1><p>Capture questions, ideas, and things you want to remember. Your notes are saved automatically on this device.</p></div>
+        <div class="notes-layout"><div class="notes-list"><div class="notes-list-head"><strong>My notes</strong><button class="small-add" id="newNote">＋ New</button></div><div id="notesList"></div></div><div class="note-editor"><input id="noteTitle" placeholder="Note title..." /><textarea id="noteBody" placeholder="What did you learn today? What is still confusing? Write it down..."></textarea><div class="note-editor-foot"><span id="noteSaved">Saved locally</span><button class="danger-text" id="deleteNote">Delete note</button></div></div></div>
+      </section>
+
+      <!-- <section class="view" id="view-career">
+        <div class="page-intro"><div class="eyebrow">OPTIONAL · ONLY IF YOU'RE CURIOUS</div><h1>Career preparation</h1><p>This section is completely optional. Your main goal is learning AI — explore this only if you want to understand how these skills connect to real-world roles.</p></div>
+        <div class="optional-banner"><span>🌱</span><div><strong>No pressure, no deadlines.</strong><p>You can complete the entire learning path without touching this section.</p></div></div>
+        <div class="career-grid"><article><span>01</span><h3>AI / ML foundations</h3><p>Explore roles such as Junior ML Engineer, Data Analyst, or AI Application Developer.</p></article><article><span>02</span><h3>Generative AI</h3><p>Explore LLM Application Developer, AI Automation Specialist, or AI Product Builder.</p></article><article><span>03</span><h3>Evaluation & quality</h3><p>Explore AI Evaluator, LLM Quality Analyst, AI Trainer, or AI QA roles.</p></article></div>
+        <div class="note-card"><strong>When you're ready</strong><p>Build a small portfolio, document what you learned, explain your design decisions, and show working projects. A clear understanding of your work is more valuable than collecting certificates alone.</p></div>
+      </section> -->
+      <footer class="footer">Made with curiosity <span>♥</span> <small>AI Learning Journey · Learn at your own pace</small></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <div class="celebration" id="celebration"><div class="celebration-box"><div class="celebrate-emoji">🎉</div><div class="eyebrow">MODULE COMPLETED</div><h2>You did it!</h2><p id="celebrateText">One more step in your AI journey.</p><div class="reward-badge">✧ Achievement unlocked</div><button class="primary-btn" id="celebrateClose">Keep going <span>→</span></button></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
